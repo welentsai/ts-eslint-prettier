@@ -1,7 +1,10 @@
 const a = 12
 const b = 17
 
-const showProduct: (first: number, second: number) => number = (first, second) => {
+const showProduct: (first: number, second: number) => number = (
+  first,
+  second,
+) => {
   return first * second
 }
 

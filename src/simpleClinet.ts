@@ -7,6 +7,9 @@ interface ServerResponse {
 }
 
 export const api = (baseUrl = defaultBaseUrl) => ({
-  getHealth: () => axios.get<ServerResponse>(`${baseUrl}/health`).then((response) => response.data.status),
+  getHealth: () =>
+    axios
+      .get<ServerResponse>(`${baseUrl}/health`)
+      .then((response) => response.data.status),
   /* other endpoints here */
 })
