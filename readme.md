@@ -35,12 +35,8 @@ npx tsc --init
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }
 ```
 
@@ -48,9 +44,9 @@ It tells the compiler to
 
 - use `es2018` syntax when generating the distributable
 - use the `commonjs` module format.
-- generate *.js to `/dist` folder
+- generate \*.js to `/dist` folder
 - generate source map
-- include all *.ts file inside `/src` folder
+- include all \*.ts file inside `/src` folder
 - exclude all files inside `/node_modules` folder
 
 ## 2. 建立開發環境 Live Compile + Run
@@ -67,7 +63,7 @@ npm i -D ts-node
 npm i -D nodemon
 ```
 
-### 2.3 將script 設定加入 package.json
+### 2.3 將 script 設定加入 package.json
 
 ```shell
 "scripts": {
@@ -79,7 +75,7 @@ npm i -D nodemon
 
 ### 2.4 通過 `npm run start` 進行開發
 
-### 2.5 Production  編譯 js `npm run build`
+### 2.5 Production 編譯 js `npm run build`
 
 ## 3. ESlint 環境建置
 
@@ -94,9 +90,7 @@ npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```json
 {
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["plugin:@typescript-eslint/recommended"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -127,7 +121,7 @@ It tells the ESLint linter to:
 ### 4.1 安裝 prettier
 
 ```shell
-npm i -D prettier
+npm i --save-dev --save-exact prettier
 ```
 
 ### 4.2 產生 prettier 設定檔 `.prettierrc`
@@ -149,6 +143,14 @@ The setting let Prettier to
 - Convert all double quotes to single quotes where applicable
 - Break into new lines for all lines greater than 120 characters wide
 - Ensure tab width is 2 characters
+
+### 4.3 手動跑 prettier
+
+```shell
+npx prettier --write src/index.ts
+
+npx prettier --write .
+```
 
 ## Remark
 

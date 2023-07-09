@@ -1,8 +1,9 @@
 ## 1. Jest 安裝
 
 ### 1.1 Jest 安裝
+
 ```shell
-npm i -D jest typescript ts-jest @types/jest 
+npm i -D jest typescript ts-jest @types/jest
 ```
 
 ### 1.2 新增 jest.config.js 讓 Jest 可以編譯 TypeScript
@@ -15,14 +16,15 @@ npx ts-jest config:init
 
 ```javascript
 module.exports = {
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testRegex: "(/test/.*|(\\.|/)(test|spec))\\.tsx?$"
+  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.tsx?$',
 };
 ```
 
 配置說明
+
 - `coverageDirectory`：Jest 輸出的 coverage 檔案要放在哪個目錄
 - `preset`：設定 preset
 - `testEnvironment`：用於測試的測試環境
