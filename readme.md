@@ -150,6 +150,76 @@ The setting let Prettier to
 - Break into new lines for all lines greater than 120 characters wide
 - Ensure tab width is 2 characters
 
+## 5. Vitest
+
+### 5.1 安裝 Vitest
+
+```shell
+npm install -D vitest
+```
+
+### 5.2 Writing tests
+
+```typescript
+// sum.test.js
+import {expect, test} from 'vitest'
+
+test('adds 1 + 2 to equal 3', () => {
+    expect(1 + 2).toBe(3)
+})
+```
+
+### 5.3 修改 package.json
+
+```json
+{
+  "scripts": {
+    "test": "vitest"
+  }
+}
+```
+
+### 5.4 Run Tests
+
+```
+npm run test
+```
+
+### 5.5 Config Vitest
+
+在 root 新增 `vite.config.ts`
+
+新增以下程式片段
+
+```typescript
+import {defineConfig} from 'vitest/config'
+
+export default defineConfig({
+    test: {
+        // ...
+    },
+})
+```
+
+### 5.6 Coverage
+
+安裝 coverage-v8
+
+```shell
+npm i -D @vitest/coverage-v8
+```
+
+package.json 新增
+
+```json
+{
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  }
+}
+```
+
 ## Remark
 
 - `nodemon` 用來監察檔案的改變
