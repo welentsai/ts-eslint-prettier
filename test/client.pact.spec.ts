@@ -1,13 +1,13 @@
-import { pactWith } from 'jest-pact';
-import { healthRequest, healthyResponse } from '../../src/pact.features';
-import { api } from '../../src/simpleClinet';
+import { pactWith } from 'jest-pact'
+import { healthRequest, healthyResponse } from './pact.feature/pact.features'
+import { api } from '../src/simpleClinet'
 
 pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (provider) => {
-  let client: any;
+  let client: any
 
   beforeEach(() => {
-    client = api(provider.mockService.baseUrl);
-  });
+    client = api(provider.mockService.baseUrl)
+  })
 
   describe('health endpoint', () => {
     beforeEach(() =>
@@ -16,11 +16,11 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, (provider) => {
         ...healthRequest,
         willRespondWith: healthyResponse,
       }),
-    );
+    )
 
     it('returns server health', () =>
       client.getHealth().then((health: any) => {
-        expect(health).toEqual('up');
-      }));
-  });
-});
+        expect(health).toEqual('up')
+      }))
+  })
+})

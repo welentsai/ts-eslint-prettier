@@ -4,4 +4,5 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testRegex: '(/test/.*|(\\.|/)(test|spec))\\.tsx?$',
-};
+  modulePathIgnorePatterns: ['/test/pact.feature/'],
+}
