@@ -16,7 +16,7 @@ npm i -D typescript
 ### 1.3. 加入 node.d.ts
 
 ```shell
-npm i -D @types/node
+npm i -D @type/node
 ```
 
 ### 1.4. 加入 TypeScript 的設定檔 tsconfig.json
