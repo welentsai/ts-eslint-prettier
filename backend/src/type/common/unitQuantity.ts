@@ -5,3 +5,4 @@ const schema = S.number.pipe(S.nonNaN(), S.greaterThanOrEqualTo(1), S.greaterTha
 const of = S.parseEither(schema)
 export type UnitQuantity = S.To<typeof schema>
 export const UnitQuantity = { schema, of }
+
