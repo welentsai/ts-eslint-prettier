@@ -9,6 +9,5 @@ const schema = S.struct({
 const of = S.parseEither(schema)
 
 // inputs to the workflow
-
 export type UnvalidatedCustomerInfo = S.To<typeof schema>
 export const UnvalidatedCustomerInfo = { schema, of }
