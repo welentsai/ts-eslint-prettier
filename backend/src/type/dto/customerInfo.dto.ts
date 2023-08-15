@@ -23,8 +23,12 @@ const of = (firstName: string) => (lastName: string) => (emailAddress: string) =
 
 // Convert the DTO into a UnvalidatedCustomerInfo object.
 /// Used when importing an OrderForm from the outside world into the domain.
-type ToUnvalidatedCustomerInfo = (dto: CustomerInfoDto) => E.Either<ParseError, UnvalidatedCustomerInfo>
-const toUnvalidatedCustomerInfo: ToUnvalidatedCustomerInfo = (dto: CustomerInfoDto) => UnvalidatedCustomerInfo.of(dto)
+type ToUnvalidatedCustomerInfo = (dto: CustomerInfoDto) => UnvalidatedCustomerInfo
+const toUnvalidatedCustomerInfo: ToUnvalidatedCustomerInfo = (dto: CustomerInfoDto) => ({
+    firstName: dto.firstName,
+    lastName: dto.lastName,
+    emailAddress: dto.emailAddress
+})
 
 
 /// Convert the DTO into a CustomerInfo object

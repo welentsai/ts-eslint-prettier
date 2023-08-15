@@ -18,8 +18,8 @@ const pricedOrderLineschema = S.struct({
 
 const ofPricedOrderLineschema = S.parseEither(pricedOrderLineschema)
 
-type PricedOrderLine = S.To<typeof pricedOrderLineschema>
-const PricedOrderLine = { schema: pricedOrderLineschema, of: ofPricedOrderLineschema }
+export type PricedOrderLine = S.To<typeof pricedOrderLineschema>
+export const PricedOrderLine = { schema: pricedOrderLineschema, of: ofPricedOrderLineschema }
 
 
 
