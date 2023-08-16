@@ -27,7 +27,7 @@ const fromDomain: FromDomain = (domainObj: PricedOrderLine) => ({
     linePrice: domainObj.linePrice
 })
 
-export const pricedOrderLine = {
+export const PricedOrderLineDto = {
     of,
     fromDomain
 }
