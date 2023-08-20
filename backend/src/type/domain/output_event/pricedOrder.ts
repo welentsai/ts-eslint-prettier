@@ -28,7 +28,7 @@ const pricedOrderSchema = S.struct({
     customerInfo: CustomerInfo.schema,
     shippingAddress: Address.schema,
     billingAddress: Address.schema,
-    AmountToBill: BillingAmount.schema,
+    amountToBill: BillingAmount.schema,
     lines: S.array(PricedOrderLine.schema)
 })
 

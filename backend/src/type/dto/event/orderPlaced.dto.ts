@@ -27,7 +27,7 @@ const fromDomain: FromDomain = (domainObj: OrderPlaced) => ({
     customerInfo: CustomerInfoDto.fromCustomerInfo(domainObj.customerInfo),
     shippingAddress: AddressDto.fromAddress(domainObj.shippingAddress),
     billingAddress: AddressDto.fromAddress(domainObj.billingAddress),
-    amountToBill: domainObj.AmountToBill,
+    amountToBill: domainObj.amountToBill,
     lines: pipe(domainObj.lines, RA.map(PricedOrderLineDto.fromDomain)).concat()
 })
 

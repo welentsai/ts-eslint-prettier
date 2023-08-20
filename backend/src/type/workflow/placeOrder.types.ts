@@ -3,7 +3,7 @@ import * as E from 'fp-ts/Either'
 import * as O from 'fp-ts/Option'
 import { UnvalidatedAddress } from '../domain/input/unvalidatedAddress'
 import { ProductCode } from '../common/productCode'
-import { AddressValidationError, ValidationError } from '../error/validationError'
+import { AddressValidationError, ProductCodeValidationError, ValidationError } from '../error/validationError'
 import { UnvalidatedOrder } from '../domain/input/unvalidatedOrder'
 import { PlaceOrderError } from '../error/placeOrderError'
 import { PlaceOrderEvent } from '../domain/output_event/placeOrderEvent'
@@ -23,10 +23,10 @@ import { OrderAcknowledgmentSent } from '../domain/output_event/orderAcknowledgm
 // ======================================================
 
 
-type CheckProductCodeExists = (productCode: ProductCode) => boolean
-type CheckedAddress = UnvalidatedAddress
+export type CheckProductCodeExists = (productCode: ProductCode) => E.Either<ProductCodeValidationError, ProductCode>
+export type CheckedAddress = UnvalidatedAddress
 
-type CheckAddressExists = (unvalidatedAddress: UnvalidatedAddress) => TE.TaskEither<AddressValidationError, CheckedAddress>
+export type CheckAddressExists = (unvalidatedAddress: UnvalidatedAddress) => TE.TaskEither<AddressValidationError, CheckedAddress>
 
 // type PlaceOrder = (unvalidatedOrder: UnvalidatedOrder) => TE.TaskEither<PlaceOrderError, Array<PlaceOrderEvent>>
 
@@ -35,13 +35,13 @@ type CheckAddressExists = (unvalidatedAddress: UnvalidatedAddress) => TE.TaskEit
 // Validated Order
 // ---------------------------
 
-type ValidatedOrderLine = {
+export type ValidatedOrderLine = {
     orderLineId: OrderLineId
     productCode: ProductCode
     quantity: OrderQuantity
 }
 
-type ValidatedOrder = {
+export type ValidatedOrder = {
     orderId: OrderId
     customerInfo: CustomerInfo
     shippingAddress: Address
@@ -60,11 +60,11 @@ type ValidateOrder =
 // Pricing step
 // ---------------------------
 
-type GetProductPrice = (productCode: ProductCode) => Price
+export type GetProductPrice = (productCode: ProductCode) => Price
 
 // priced state is defined Domain.WorkflowTypes
 
-type PriceOrder =
+export type PriceOrder =
     (getProductPrice: GetProductPrice)     // dependency
         => (validatedOrder: ValidatedOrder)  // input
             => E.Either<PricingError, PricedOrder>  // output
@@ -76,12 +76,12 @@ type PriceOrder =
 
 type HtmlString = string
 
-type OrderAcknowledgment = {
-    EmailAddress: EmailAddress
-    Letter: HtmlString
+export type OrderAcknowledgment = {
+    emailAddress: EmailAddress
+    letter: HtmlString
 }
 
-type CreateOrderAcknowledgmentLetter = (pricedOrder: PricedOrder) => HtmlString
+export type CreateOrderAcknowledgmentLetter = (pricedOrder: PricedOrder) => HtmlString
 
 /// Send the order acknowledgement to the customer
 /// Note that this does NOT generate an Result-type error (at least not in this workflow)
@@ -91,9 +91,9 @@ type CreateOrderAcknowledgmentLetter = (pricedOrder: PricedOrder) => HtmlString
 
 type SendResult = 'Sent' | 'NotSent'
 
-type SendOrderAcknowledgment = (orderAcknowledgment: OrderAcknowledgment) => SendResult
+export type SendOrderAcknowledgment = (orderAcknowledgment: OrderAcknowledgment) => SendResult
 
-type AcknowledgeOrder =
+export type AcknowledgeOrder =
     (createOrderAcknowledgmentLetter: CreateOrderAcknowledgmentLetter)  // dependency
         => (sendOrderAcknowledgment: SendOrderAcknowledgment)      // dependency
             => (pricedOrder: PricedOrder)                  // input
@@ -104,7 +104,7 @@ type AcknowledgeOrder =
 // Create events
 // ---------------------------
 
-type CreateEvents =
+export type CreateEvents =
     (pricedOrder: PricedOrder)                           // input
         => (orderAcknowledgmentSent: O.Option<OrderAcknowledgmentSent>)    // input (event from previous step)
             => Array<PlaceOrderEvent>              // output

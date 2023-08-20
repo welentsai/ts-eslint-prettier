@@ -6,4 +6,4 @@ const schema = S.union(UnitQuantity.schema, KilogramQuantity.schema)
 const of = S.parseEither(schema)
 
 export type OrderQuantity = S.To<typeof schema>
-export const OrderQuantity = { schema }
+export const OrderQuantity = { schema, of }
